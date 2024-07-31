@@ -1,0 +1,61 @@
+
+
+
+export interface ArticleObject {
+
+  title: string,
+  content: string, 
+  author: string,
+  category: string,
+  image: string,
+  created: Date,
+  video?: string,
+  headline?: boolean
+}
+
+interface ItemAttributes {
+  title: string;
+  content: string;
+  author: string;
+  category: string;
+  article_image: {
+    data: {
+      attributes: {
+        formats: {
+          large: {
+            url: string;
+          };
+        };
+      };
+    }[];
+  };
+  video?: string;
+  headline: string;
+  publishedAt: string;
+}
+
+
+
+export default function fromDataToArticleType(fetchData: any): ArticleObject[]{
+
+
+  const formatted_data = fetchData.map((item: any) => {
+
+    let new_item: ArticleObject  = {
+
+      title:  item.attributes['title'],
+      content:  item.attributes['content'],
+      author:  item.attributes['author'],
+      category:  item.attributes['category'],
+      image:  item.attributes['article_image'].data[0].attributes['formats']['large']['url'],
+      video:  item.attributes['video']?? null,
+      headline:  item.attributes['headline'] === 'true'? true: false,
+      created:  item.attributes['publishedAt'],
+    };
+
+    
+    return new_item
+  })
+
+  return formatted_data  
+}

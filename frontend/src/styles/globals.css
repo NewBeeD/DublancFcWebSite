@@ -11,3 +11,27 @@ body {
   margin: 0;
   box-sizing: border-box;
 }
+
+/* 
+
+body > div.MuiBox-root.css-14iyvbi > div:nth-child(2) > div.MuiBox-root.css-16tjn7d .slick-slide > div {
+
+  margin: 0 10px;
+}
+
+body > div.MuiBox-root.css-14iyvbi > div:nth-child(2) > div.MuiBox-root.css-yzjzjh .slick-slide > div {
+
+  margin: 0 10px;
+} */
+
+body > div.MuiBox-root.css-14iyvbi > div:nth-child(2) > div.MuiBox-root.css-17g2bcv .slick-slide > div,
+body > div.MuiBox-root.css-14iyvbi > div:nth-child(2) > div.MuiBox-root.css-16tjn7d .slick-slide > div,
+body > div.MuiBox-root.css-14iyvbi > div:nth-child(2) > div.MuiBox-root.css-yzjzjh .slick-slide > div {
+  margin: 0 10px;
+}
+
+
+
+
+
+

@@ -1,0 +1,11 @@
+.slickSlide{
+
+  margin: 0 35px;
+  display: none;
+}
+
+/* Override default slick styles to ensure correct spacing */
+.slickList {
+  margin: 0 -10px;
+}
+

@@ -80,13 +80,15 @@ const Header = () => {
 
     <Box >
 
-      <AppBar position="sticky" sx={{margin: 'auto', width: {sm: 700 ,md: 900, lg: 1260}}}>
+      <AppBar 
+      position="sticky" 
+      sx={{margin: 'auto', minWidth: {sm: 600 ,md: 900, lg: 1260}, maxWidth:{sm: 899 ,md: 1199, lg: 1260}}}>
 
         <Container sx={{padding: 0}}>
           <Toolbar disableGutters sx={{ display: {md: 'flex'}, justifyContent: {md:'center'}}}>
 
             {/* Responsiveness for Larger Devices */}
-            <Stack direction='column' justifyContent='center' display={{xs: 'none', md: 'inherit'}}>
+            <Stack direction='column' justifyContent='center' display={{xs: 'none', sm: 'inherit'}}>
 
               <Box padding={0} display='flex' justifyContent='center'>
                 <TeamLogo width={180} height={150} />
