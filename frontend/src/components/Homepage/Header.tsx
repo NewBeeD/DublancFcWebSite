@@ -82,7 +82,7 @@ const Header = () => {
 
       <AppBar 
       position="sticky" 
-      sx={{margin: 'auto', minWidth: {sm: 600 ,md: 900, lg: 1260}, maxWidth:{sm: 899 ,md: 1199, lg: 1260}}}>
+      sx={{margin: 'auto', minWidth: {sm: 600 ,md: 900, lg: 1260}, maxWidth:{sm: 899 ,md: 1199, lg: 1280}}}>
 
         <Container sx={{padding: 0}}>
           <Toolbar disableGutters sx={{ display: {md: 'flex'}, justifyContent: {md:'center'}}}>

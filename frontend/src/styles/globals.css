@@ -24,10 +24,17 @@ body > div.MuiBox-root.css-14iyvbi > div:nth-child(2) > div.MuiBox-root.css-yzjz
   margin: 0 10px;
 } */
 
+/* Homepage Main News Margin Adjustment */
 body > div.MuiBox-root.css-14iyvbi > div:nth-child(2) > div.MuiBox-root.css-17g2bcv .slick-slide > div,
 body > div.MuiBox-root.css-14iyvbi > div:nth-child(2) > div.MuiBox-root.css-16tjn7d .slick-slide > div,
 body > div.MuiBox-root.css-14iyvbi > div:nth-child(2) > div.MuiBox-root.css-yzjzjh .slick-slide > div {
   margin: 0 10px;
+}
+
+/* Gallery React Slick Margin Adustment */
+body > div.MuiBox-root.css-wgmqix > div:nth-child(4) > div.MuiStack-root.css-nen11g-MuiStack-root > div .slick-slide > div {
+
+  margin: 0 5px;
 }
 
 

@@ -11,9 +11,6 @@ import fromDataToArticleType from "@/lib/ArticlesUtilities/CreateArticleTypeStru
 import { useEffect, useState } from "react";
 import qs from 'qs'
 
-import styles from '../../styles/NavBar.module.css'
-
-
 
 export interface ArticleObject {
 
@@ -61,7 +58,7 @@ const HeadlineCarousel = async () => {
   
 
   var settings = {
-    dots: false,
+    dots: true,
     infinite: true,
     slidesToShow: 1,
     slidesToScroll: 1,
@@ -122,7 +119,7 @@ const HeadlineCarousel = async () => {
 
         {articles && articles.map((item, idx) => (
 
-          <Card key={idx} sx={{ maxWidth: 1260, height: 600}}>
+          <Card key={idx} sx={{ maxWidth: 1280, height: 600}}>
 
             <Image src={item.image} alt="Player" quality={100} width={width > 1260?1260:width} height={600} style={{ objectFit: 'cover', objectPosition: "center 25%"}}/>
 

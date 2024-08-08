@@ -60,6 +60,41 @@ const HeadlineCarousel = async () => {
   }, [])
   
 
+  const settings = {
+
+    dots: false,
+    infinite: false,
+    slidesToShow: 3,
+    slidesToScroll: 1,
+    autoplay: false,
+    cssEase: "linear",
+    pauseOnHover: false, 
+    arrows: false,
+    responsive: [
+      {
+        breakpoint: 1024,
+        settings:{
+          slidesToShow: 3,
+          slidesToScroll: 1,
+        }
+      },
+      {
+        breakpoint: 800,
+        settings:{
+          slidesToShow: 2,
+          slidesToScroll: 1,
+        }
+      },
+      {
+        breakpoint: 600,
+        settings:{
+          slidesToShow: 1,
+          slidesToScroll: 1,
+        }
+      }
+    ]
+  }
+
   var settings_xs = {
     dots: false,
     infinite: false,
@@ -105,7 +140,7 @@ const HeadlineCarousel = async () => {
   
   return (
 
-    <Box className="slider-container" >
+    <Box  >
 
       <Box paddingLeft={{ xs: 2}} paddingY={3}>
         <Typography variant="h5" style={{ fontWeight: 'bold'}}>
@@ -119,17 +154,17 @@ const HeadlineCarousel = async () => {
 
       <Box display={{ xs: 'inherit', sm: 'none'}} >
 
-        <Slider {...settings_xs}>
+        <Slider {...settings}>
 
           {articles && articles.map((item, idx) => (
 
             <Box className={styles.slickSlide} >
 
-            <Card key={idx} sx={{ maxWidth: 600, height: 350}} >
+              <Card key={idx} sx={{ maxWidth: 600, height: 350}} >
 
-              <Image src={item.image} alt="Player" quality={100} width={width} height={600} style={{ objectFit: 'cover', objectPosition: "50% 50%"}}/>
+                <Image src={item.image} alt="Player" quality={100} width={width} height={600} style={{ objectFit: 'cover', objectPosition: "50% 50%"}}/>
 
-            </Card>
+              </Card>
             </Box>
 
 
@@ -142,7 +177,7 @@ const HeadlineCarousel = async () => {
 
       <Box display={{ xs: 'none', sm: 'inherit', md: 'none'}}>
 
-        <Slider {...settings_sm}>
+        <Slider {...settings}>
 
           {articles && articles.map((item, idx) => (
 
@@ -160,13 +195,13 @@ const HeadlineCarousel = async () => {
 
       <Box display={{ xs: 'none', sm: 'none', md: 'inherit'}}>
 
-        <Slider {...settings_md}>
+        <Slider {...settings}>
 
         {articles && articles.map((item, idx) => (
 
           <Card key={idx} sx={{ maxWidth: 400, height: 300}}>
 
-            <Image src={item.image} alt="Player" quality={100} width={width > 1260?400:width} height={300} style={{ objectFit: 'cover', objectPosition: "center 25%"}}/>
+            <Image src={item.image} alt="Player" quality={100} width={width > 1260?400:width} height={300} style={{ objectFit: 'cover', objectPosition: "center 70%"}}/>
 
           </Card>
 
