@@ -1,11 +1,10 @@
 "use client"
 
-import { Box, Stack, Paper, Card, CardContent, CardActions, CardMedia, Button, Typography } from "@mui/material";
-import Image from "next/image";
+import { Box } from "@mui/material";
+
 import Slider from "react-slick";
+import Slide from "./MainNewsSlide/Slide";
 
-
-import useScreenSize from "@/util/windowDimension";
 import fromDataToArticleType from "@/lib/ArticlesUtilities/CreateArticleTypeStructure/ArticleTypeStructure";
 
 import { useEffect, useState } from "react";
@@ -27,14 +26,13 @@ export interface ArticleObject {
 const HeadlineCarousel = async () => {
 
   const [articles, setArticle] = useState<ArticleObject[]>([])
-  const { width, height } = useScreenSize() 
   
   useEffect(()=>{
       
       const params_articles = {
 
         populate: {
-          article_image: {
+          image: {
             populate: true
           }
         }
@@ -42,11 +40,11 @@ const HeadlineCarousel = async () => {
 
       const query_params_article = qs.stringify(params_articles)
 
-      fetch(`https://dublancfc-api.onrender.com/api/articles?${query_params_article}`)
+      fetch(`https://dfcrestapi.onrender.com/api/articles?${query_params_article}`)
       .then((res) => res.json())
-      .then((data) => {      
+      .then((data) => {              
 
-        const final_data: ArticleObject[] = fromDataToArticleType(data.data)
+        const final_data: ArticleObject[] = fromDataToArticleType(data.data)                
         setArticle(final_data)
       })
       .catch((error) =>{
@@ -58,7 +56,7 @@ const HeadlineCarousel = async () => {
   
 
   var settings = {
-    dots: true,
+    dots: false,
     infinite: true,
     slidesToShow: 1,
     slidesToScroll: 1,
@@ -74,19 +72,15 @@ const HeadlineCarousel = async () => {
   
   return (
 
-    <Box className="slider-container">
+    <Box className="slider-container" >
 
       <Box display={{ xs: 'inherit', sm: 'none'}}>
 
         <Slider {...settings}>
 
-          {articles && articles.map((item, idx) => (
+          {articles && articles.filter(headline => headline.headline === true).map((item, idx) => (
 
-            <Card key={idx} sx={{ maxWidth: 600, height: 600}}>
-
-              <Image src={item.image} alt="Player" quality={100} width={width} height={600} style={{ objectFit: 'cover', objectPosition: "50% 50%"}}/>
-
-            </Card>
+            <Slide key={idx}  mainnews={item} />
 
           ))}
 
@@ -99,13 +93,9 @@ const HeadlineCarousel = async () => {
 
         <Slider {...settings}>
 
-          {articles && articles.map((item, idx) => (
+          {articles && articles.filter(headline => headline.headline === true).map((item, idx) => (
 
-            <Card key={idx} sx={{ maxWidth: 899, height: 500}}>
-
-              <Image src={item.image} alt="Player" quality={100} width={width} height={500} style={{ objectFit: 'cover', objectPosition: "50% 50%"}}/>
-
-            </Card>
+            <Slide key={idx}  mainnews={item} />
 
           ))}
 
@@ -117,13 +107,9 @@ const HeadlineCarousel = async () => {
 
         <Slider {...settings}>
 
-        {articles && articles.map((item, idx) => (
+        {articles && articles.filter(headline => headline.headline === true).map((item, idx) => (
 
-          <Card key={idx} sx={{ maxWidth: 1280, height: 600}}>
-
-            <Image src={item.image} alt="Player" quality={100} width={width > 1260?1260:width} height={600} style={{ objectFit: 'cover', objectPosition: "center 25%"}}/>
-
-          </Card>
+          <Slide key={idx}  mainnews={item} />
 
         ))}
 
@@ -132,9 +118,6 @@ const HeadlineCarousel = async () => {
       </Box>
 
     </Box>
-
-
-      
 
   );
 }

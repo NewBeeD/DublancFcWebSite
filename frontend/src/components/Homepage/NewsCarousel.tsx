@@ -1,14 +1,17 @@
 "use client"
 
-import { Box, Stack, Paper, Card, CardContent, CardActions, CardMedia, Button, Typography } from "@mui/material";
+import { Box, Stack, Paper, Card, CardContent, CardActions, CardMedia, Button, Typography, IconButton } from "@mui/material";
 import Image from "next/image";
 import Slider from "react-slick";
+
+import ArrowCircleRightIcon from '@mui/icons-material/ArrowCircleRight';
+import ArrowCircleLeftIcon from '@mui/icons-material/ArrowCircleLeft';
 
 
 import useScreenSize from "@/util/windowDimension";
 import fromDataToArticleType from "@/lib/ArticlesUtilities/CreateArticleTypeStructure/ArticleTypeStructure";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import qs from 'qs'
 
 import styles from '../../styles/NewsCarousel.module.css'
@@ -31,13 +34,16 @@ const HeadlineCarousel = async () => {
 
   const [articles, setArticle] = useState<ArticleObject[]>([])
   const { width, height } = useScreenSize() 
+  const sliderRef_One = useRef()
+  const sliderRef_Two = useRef()
+  const sliderRef_Three = useRef()
   
   useEffect(()=>{
       
       const params_articles = {
 
         populate: {
-          article_image: {
+          image: {
             populate: true
           }
         }
@@ -45,7 +51,7 @@ const HeadlineCarousel = async () => {
 
       const query_params_article = qs.stringify(params_articles)
 
-      fetch(`https://dublancfc-api.onrender.com/api/articles?${query_params_article}`)
+      fetch(`https://dfcrestapi.onrender.com/api/articles?${query_params_article}`)
       .then((res) => res.json())
       .then((data) => {      
 
@@ -95,121 +101,211 @@ const HeadlineCarousel = async () => {
     ]
   }
 
-  var settings_xs = {
-    dots: false,
-    infinite: false,
-    slidesToShow: 1,
-    slidesToScroll: 1,
-    autoplay: false,
-    cssEase: "linear",
-    pauseOnHover: false, 
-    arrows: false,
-   
-  };
-
-  var settings_sm = {
-    dots: false,
-    infinite: false,
-    slidesToShow: 2,
-    slidesToScroll: 1,
-    autoplay: false,
-    speed: 2000,
-    autoplaySpeed: 4000,
-    cssEase: "linear",
-    pauseOnHover: true, 
-    arrows: false,
-   
-  };
-
-  var settings_md = {
-    dots: false,
-    infinite: false,
-    slidesToShow: 3,
-    slidesToScroll: 1,
-    autoplay: false,
-    speed: 2000,
-    autoplaySpeed: 4000,
-    cssEase: "linear",
-    pauseOnHover: true, 
-    arrows: false,
-   
-  };
-
-  // sx={{margin: 'auto', minWidth: {sm: 700 ,md: 900, lg: 1260}, maxWidth:{sm: 700 ,md: 1199, lg: 1260}}}
   
   
   return (
 
-    <Box  >
+    <Box sx={{ backgroundColor: 'black'}} paddingY={5} position='relative'>
 
-      <Box paddingLeft={{ xs: 2}} paddingY={3}>
-        <Typography variant="h5" style={{ fontWeight: 'bold'}}>
-          News.
-        </Typography>
+      <Box paddingY={3} >
 
-        <Typography>
-          Headlines from around the club
-        </Typography>
+        <Box paddingLeft={{ xs: 2}} paddingBottom={2}>
+          <Typography variant="h5" style={{ fontWeight: 'bold'}} color='white'>
+            News.
+          </Typography>
+
+          <Typography color='white'>
+            Headlines from around the club
+          </Typography>
+        </Box>
+
+        <Box display={{ xs: 'inherit', sm: 'none'}} >
+
+          <Slider {...settings} ref={sliderRef_One}>
+
+            {articles && articles.filter(news => news.headline != true).map((item, idx) => (
+
+              <Box className={styles.slickSlide} >
+
+                <Card key={idx} sx={{ maxWidth: 350, height: 300}} >
+
+                  <Box width='100%' height={300} >
+
+                    <CardMedia component='img' image={item.image} style={{ objectFit: 'cover', objectPosition: "50% 50%"}} sx={{ height: {xs: '100%'}, width: '100%'}}/>
+
+                  </Box>
+
+                </Card>
+
+                <Box paddingLeft={1}>
+
+                  <Box>
+                    <Typography color='#13f01e' fontWeight={900}>{item.category}</Typography>
+                  </Box>
+
+
+                  <Box>
+                    <Typography color='white'>
+                      {item.title}
+                    </Typography>
+                  </Box>
+
+                </Box>
+
+
+              </Box>
+
+
+            ))}
+
+
+          </Slider>
+
+          <Box sx={{ position: 'absolute', top: '70px', right: '2px', zIndex: 2}}>
+
+            <Stack  direction='row' >
+
+              <IconButton onClick={() => sliderRef_One.current?.slickPrev()}>
+                <ArrowCircleLeftIcon sx={{ color: '#13f01e', fontSize: '40px'}}/>
+              </IconButton>
+
+              <IconButton onClick={() => sliderRef_One.current?.slickNext()}>
+                <ArrowCircleRightIcon sx={{ color: '#13f01e', fontSize: '40px'}}/>
+              </IconButton>
+
+            </Stack>
+
+          </Box>
+
+        </Box>
+
+        <Box display={{ xs: 'none', sm: 'inherit', md: 'none'}} >
+
+          <Slider {...settings} ref={sliderRef_Two}>
+
+            {articles && articles.filter(news => news.headline != true).map((item, idx) => (
+
+              <Box>
+
+                <Card key={idx} sx={{ maxWidth: 350, height: 300}} >
+
+                  <Box width='100%' height={300} >
+
+                  <CardMedia component='img' image={item.image} style={{ objectFit: 'cover', objectPosition: "50% 50%"}} sx={{ height: {xs: '100%'}, width: '100%'}}/>
+
+                  </Box>
+
+                </Card>
+
+                <Box paddingLeft={1}>
+
+                  <Box>
+                    <Typography color='#13f01e' fontWeight={900}>{item.category}</Typography>
+                  </Box>
+
+
+                  <Box>
+                    <Typography color='white'>
+                      {item.title}
+                    </Typography>
+                  </Box>
+
+                </Box>
+                
+              </Box>
+
+              
+
+            ))}
+
+          </Slider>
+
+          <Box sx={{ position: 'absolute', top: '70px', right: '30px', zIndex: 2}}>
+
+            <Stack  direction='row'>
+
+              <IconButton onClick={() => sliderRef_Two.current?.slickPrev()}>
+                <ArrowCircleLeftIcon sx={{ color: '#13f01e', fontSize: '40px'}}/>
+              </IconButton>
+
+              <IconButton onClick={() => sliderRef_Two.current?.slickNext()}>
+                <ArrowCircleRightIcon sx={{ color: '#13f01e', fontSize: '40px'}}/>
+              </IconButton>
+
+            </Stack>
+
+          </Box>
+
+        </Box>
+
+        <Box display={{ xs: 'none', sm: 'none', md: 'inherit'}} >
+
+          <Slider {...settings} ref={sliderRef_Three}>
+
+            {articles && articles.filter(news => news.headline != true).map((item, idx) => (
+
+              <Box paddingLeft={3}>
+
+                <Card key={idx} sx={{ maxWidth: 350, height: 300, overflow: 'hidden'}}>
+
+                  {/* <Image src={item.image} alt="Player" quality={100} width={width > 1260?400:width} height={300} style={{ objectFit: 'cover', objectPosition: "center 70%"}}/> */}
+
+                  <Box width='100%' height={300} >
+
+                    <CardMedia 
+                    component='img' 
+                    image={item.image} 
+                    style={{ objectFit: 'cover', objectPosition: "50% 50%"}} 
+                    sx={{ height: {xs: '100%'}, width: '100%'}}/>
+
+                  </Box>
+
+                </Card>
+
+                <Box paddingLeft={1}>
+
+                  <Box>
+                    <Typography color='#13f01e' fontWeight={900}>{item.category}</Typography>
+                  </Box>
+
+
+                  <Box>
+                    <Typography color='white'>
+                      {item.title}
+                    </Typography>
+                  </Box>
+
+                </Box>
+              </Box>
+
+
+            ))}
+
+          </Slider>  
+
+          <Box sx={{ position: 'absolute', top: '70px', right: '30px', zIndex: 2}}>
+
+              <Stack  direction='row'>
+
+                <IconButton onClick={() => sliderRef_Three.current?.slickPrev()}>
+                  <ArrowCircleLeftIcon sx={{ color: '#13f01e', fontSize: '40px'}}/>
+                </IconButton>
+
+                <IconButton onClick={() => sliderRef_Three.current?.slickNext()}>
+                  <ArrowCircleRightIcon sx={{ color: '#13f01e', fontSize: '40px'}}/>
+                </IconButton>
+
+              </Stack>
+
+          </Box>         
+
+        </Box>
+
+        
       </Box>
 
-      <Box display={{ xs: 'inherit', sm: 'none'}} >
-
-        <Slider {...settings}>
-
-          {articles && articles.map((item, idx) => (
-
-            <Box className={styles.slickSlide} >
-
-              <Card key={idx} sx={{ maxWidth: 600, height: 350}} >
-
-                <Image src={item.image} alt="Player" quality={100} width={width} height={600} style={{ objectFit: 'cover', objectPosition: "50% 50%"}}/>
-
-              </Card>
-            </Box>
 
 
-          ))}
-
-
-        </Slider>
-
-      </Box>
-
-      <Box display={{ xs: 'none', sm: 'inherit', md: 'none'}}>
-
-        <Slider {...settings}>
-
-          {articles && articles.map((item, idx) => (
-
-            <Card key={idx} sx={{ maxWidth: 600, height: 300}} >
-
-              <Image src={item.image} alt="Player" quality={100} width={width} height={500} style={{ objectFit: 'cover', objectPosition: "50% 50%"}}/>
-
-            </Card>
-
-          ))}
-
-        </Slider>
-
-      </Box>
-
-      <Box display={{ xs: 'none', sm: 'none', md: 'inherit'}}>
-
-        <Slider {...settings}>
-
-        {articles && articles.map((item, idx) => (
-
-          <Card key={idx} sx={{ maxWidth: 400, height: 300}}>
-
-            <Image src={item.image} alt="Player" quality={100} width={width > 1260?400:width} height={300} style={{ objectFit: 'cover', objectPosition: "center 70%"}}/>
-
-          </Card>
-
-        ))}
-
-        </Slider>
-
-      </Box>
 
     </Box>
 

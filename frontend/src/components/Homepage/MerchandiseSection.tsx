@@ -97,7 +97,7 @@ const MerchandiseSection = () => {
 
     const query_params_jerseys = qs.stringify(params_jerseys)
 
-    fetch(`https://dublancfc-api.onrender.com/api/jerseys?${query_params_jerseys}`)
+    fetch(`https://dfcrestapi.onrender.com/api/jerseys?${query_params_jerseys}`)
     .then((res) => res.json())
     .then((data) => {      
 
@@ -119,8 +119,8 @@ const MerchandiseSection = () => {
 
       <Box paddingLeft={2} width={130} margin='auto'>
 
-        <Typography variant="h5">
-          DFC Retail
+        <Typography variant="h5" fontWeight={900}>
+          Store
         </Typography>
 
       </Box>
@@ -220,7 +220,7 @@ const MerchandiseSection = () => {
 
           <TabPanel value="3">
 
-            <Box border='2px solid red'>
+            <Box >
 
               {merch && merch.filter(cat => cat.category === 'Children Jersey').map((item, idx) => (
 

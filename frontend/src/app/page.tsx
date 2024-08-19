@@ -5,6 +5,10 @@ import HeadlineCarousel from '../components/Homepage/ArticleCarousel'
 import NewsCarousel from '@/components/Homepage/NewsCarousel'
 import MerchandiseSection from "@/components/Homepage/MerchandiseSection";
 import Gallery from '@/components/Homepage/Gallery'
+import Sponsors from "@/components/Homepage/Sponsors";
+import Video from '@/components/Homepage/Video'
+import BgImage from "@/components/Homepage/BackgroundImages/BgImage";
+import Footer from "@/components/Homepage/Footer";
 
 import { Suspense } from "react";
 
@@ -22,8 +26,12 @@ export default function Home(){
       </Suspense>
 
       <Suspense fallback={<div>Loading...</div>}>
+        <Video page='Homepage1' />
+      </Suspense> 
+
+      <Suspense fallback={<div>Loading...</div>}>
         <NewsCarousel />
-      </Suspense>    
+      </Suspense>
 
       <Suspense fallback={<div>Loading...</div>}>
         <MerchandiseSection />
@@ -33,8 +41,17 @@ export default function Home(){
         <Gallery />
       </Suspense>  
 
-      
-    
+      {/* <Suspense fallback={<div>Loading...</div>}>
+        <BgImage page='bg1' randomInt={8}/>
+      </Suspense>     */}
+
+      <Sponsors />
+
+      {/* <Suspense fallback={<div>Loading...</div>}>
+        <BgImage page='bg1' randomInt={8}/>
+      </Suspense> */}
+
+      <Footer />
     
     </Box>
   )

@@ -38,6 +38,8 @@ interface ItemAttributes {
 
 export default function fromDataToArticleType(fetchData: any): ArticleObject[]{
 
+ 
+
 
   const formatted_data = fetchData.map((item: any) => {
 
@@ -47,15 +49,14 @@ export default function fromDataToArticleType(fetchData: any): ArticleObject[]{
       content:  item.attributes['content'],
       author:  item.attributes['author'],
       category:  item.attributes['category'],
-      image:  item.attributes['article_image'].data[0].attributes['formats']['large']['url'],
+      image:  item.attributes['image'].data[0].attributes['formats']['large']['url'],
       video:  item.attributes['video']?? null,
-      headline:  item.attributes['headline'] === 'true'? true: false,
+      headline:  item.attributes['headline'],
       created:  item.attributes['publishedAt'],
     };
 
-    
     return new_item
-  })
+  })  
 
   return formatted_data  
 }

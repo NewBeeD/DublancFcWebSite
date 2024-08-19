@@ -12,17 +12,7 @@ body {
   box-sizing: border-box;
 }
 
-/* 
 
-body > div.MuiBox-root.css-14iyvbi > div:nth-child(2) > div.MuiBox-root.css-16tjn7d .slick-slide > div {
-
-  margin: 0 10px;
-}
-
-body > div.MuiBox-root.css-14iyvbi > div:nth-child(2) > div.MuiBox-root.css-yzjzjh .slick-slide > div {
-
-  margin: 0 10px;
-} */
 
 /* Homepage Main News Margin Adjustment */
 body > div.MuiBox-root.css-14iyvbi > div:nth-child(2) > div.MuiBox-root.css-17g2bcv .slick-slide > div,
@@ -32,10 +22,148 @@ body > div.MuiBox-root.css-14iyvbi > div:nth-child(2) > div.MuiBox-root.css-yzjz
 }
 
 /* Gallery React Slick Margin Adustment */
-body > div.MuiBox-root.css-wgmqix > div:nth-child(4) > div.MuiStack-root.css-nen11g-MuiStack-root > div .slick-slide > div {
 
-  margin: 0 5px;
+body > div.MuiBox-root.css-wgmqix > div.MuiBox-root.css-8f57v9 > div > div.MuiBox-root.css-1v5yytj > div > div > div > div > .slick-slide > div{
+
+  width: 300px !important;
 }
+
+body > div.MuiBox-root.css-wgmqix > div.MuiBox-root.css-8f57v9 > div > div.MuiBox-root.css-1v5yytj > div > div .slick-slide > div {
+
+  margin: 0px 2px !important;
+
+}
+
+/* Individual boxes */
+/* body > div.MuiBox-root.css-wgmqix > div.MuiBox-root.css-8f57v9 > div > div.MuiBox-root.css-1v5yytj > div > div > div > div > div.slick-slide{
+
+  width: 300px !important;
+  margin-right: 5px;
+
+} */
+
+
+
+/* End of gallery */
+
+
+/* Merch Area */
+
+#mui-p-68796-P-1 > div > div .slick-slide > div,
+#mui-p-68796-P-2 > div > div > div .slick-slide > div, 
+#mui-p-68796-P-3 > div > div > div .slick-slide > div{
+
+  margin: 0 20px;
+  display: none;
+}
+
+/* Merch area end */
+
+
+/* Background image styles */
+
+.image-container {
+  position: relative;
+  width: 100%;
+  height: 400px; /* Adjust the height as needed */
+  overflow: hidden;
+}
+
+.background-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 50% 50%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1; /* Image is placed at the lowest layer */
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+   /* Black color with 50% opacity */
+  /* background-color: rgba(0, 0, 0, 0.3); */
+  background: radial-gradient(
+    circle,
+    rgba(0, 0, 0, 0.6) 0%,   /* Center of the radial gradient */
+    rgba(0, 0, 0, 0.3) 70%,  /* Intermediate color */
+    rgba(0, 0, 0, 0.8) 100%  /* Edges of the radial gradient */
+  );
+
+  z-index: 2; /* Overlay is on top of the image */
+}
+
+/* Headline style */
+
+.headline-overlay{
+
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(
+    circle,
+    rgba(0, 0, 0, 0.2) 0%,   /* Center of the radial gradient */
+    rgba(0, 0, 0, 0.3) 70%,  /* Intermediate color */
+    rgba(0, 0, 0, 0.7) 100%  /* Edges of the radial gradient */
+  );
+  z-index: 15; /* Overlay is on top of the image */
+}
+
+
+/* end of headline styles */
+
+
+/* Footer Styles */
+
+.footer {
+  position: relative;
+  width: 100%;
+  height: 150px; /* Adjust height as needed */
+  background-color: #333; /* Background color for the footer */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.bouncing-name {
+  font-size: 120px;
+  font-weight: bold;
+  color: white;
+  position: relative;
+  white-space: nowrap; /* Prevent text from wrapping */
+  animation: bounce 20s ease-in-out infinite;
+}
+
+@keyframes bounce {
+  0%, 100% {
+    transform: translateX(-50%);
+  }
+  50% {
+    transform: translateX(50%);
+  }
+}
+
+/* Footer Styles End */
+
+/* Gallery Style */
+
+body > div.MuiBox-root.css-wgmqix > div.MuiBox-root.css-8f57v9 {
+
+  background-color: black;
+}
+
+
+/* Gallery end */
+
+
 
 
 

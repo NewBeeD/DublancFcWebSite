@@ -75,7 +75,7 @@ const Gallery = () => {
 
     const query_params_media = qs.stringify(params_media)
 
-    fetch(`https://dublancfc-api.onrender.com/api/galleries?${query_params_media}`)
+    fetch(`https://dfcrestapi.onrender.com/api/galleries?${query_params_media}`)
     .then((res) => res.json())
     .then((data) => {      
 
@@ -91,38 +91,46 @@ const Gallery = () => {
   
   
   return (
-    <Box position='relative'>
 
-      <Box position={{xs:'absolute', sm: 'inherit'}} top={{xs: 1, sm: 0}} zIndex={{xs: 500, sm: 0}}>
-        <Typography variant="h2" gutterBottom={false} sx={{ fontWeight: 900}}>
-          Gallery
-        </Typography>
+    <Box paddingY={4}>
+      <Box position='relative' width={{xs:400, sm: '100%'}} height={{xs:365}} margin={{xs:'auto'}} >
+
+        <Box position={{xs:'absolute', sm: 'inherit'}} top={{xs: 1, sm: 0}} zIndex={{xs: 500, sm: 0}}>
+          <Typography variant="h2" gutterBottom={false} sx={{ fontWeight: 900}} color='white'>
+            Gallery.
+          </Typography>
+        </Box>
+
+        <Box position={{xs:'relative', sm: 'inherit'}} zIndex={{xs: 100, sm: 0}} top={{xs:62, sm:0}}>
+
+          {gallery && gallery.filter(gallery_image => gallery_image.title === 'Gallery').map((item, idx) => (
+
+            <Box>
+
+              <Slider {...settings}>
+
+                {item.images.map((image, id) => (
+
+                  <Card sx={{ width: 100}}>
+
+                    <Image alt="galleryImage" src={image.url} width={300} height={300} style={{ objectFit: 'cover', objectPosition: "50% 50%"}}/>
+
+                  </Card>
+                ))}
+                
+              </Slider>
+
+            </Box>
+
+          ))}
+
+        </Box>
+        
       </Box>
 
-      <Box position={{xs:'relative', sm: 'inherit'}} zIndex={{xs: 100, sm: 0}} top={{xs:62, sm:0}}>
-
-        {gallery && gallery.map((item, idx) => (
-
-          <Box>
-
-            <Slider {...settings}>
-
-              {item.images.map((image, id) => (
-
-                <Card>
-                  <Image alt="galleryImage" src={image.url} width={300} height={300} style={{ objectFit: 'cover', objectPosition: "50% 50%"}}/>
-                </Card>
-              ))}
-              
-            </Slider>
-
-          </Box>
-
-        ))}
-
-      </Box>
-      
     </Box>
+
+
   );
 }
 
