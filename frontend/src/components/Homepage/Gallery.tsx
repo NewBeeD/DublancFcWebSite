@@ -11,11 +11,17 @@ import Image from "next/image";
 
 import Slider from "react-slick";
 
+interface singleImage{
+
+  name: string,
+  url: string
+}
+
 
 interface GalleryType{
 
   title: string,
-  images: object[],
+  images: singleImage[],
   description?: string
 }
 

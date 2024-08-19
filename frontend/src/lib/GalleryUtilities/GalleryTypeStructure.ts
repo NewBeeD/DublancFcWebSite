@@ -36,7 +36,7 @@ export default function fromDataToMerchandiseType(fetchData: any): GalleryType[]
 function imageArray(images: any): singleImage[]{ 
   
 
-  const all_images: singleImage[] = images.map(item => {   
+  const all_images: singleImage[] = images.map((item: any) => {   
 
     let single_image: singleImage = {
 
