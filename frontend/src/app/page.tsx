@@ -32,7 +32,7 @@ export default function Home(){
         <NewsCarousel />
       </Suspense>
 
-      <Suspense fallback={<div>Loading...</div>}>
+      {/* <Suspense fallback={<div>Loading...</div>}>
         <MerchandiseSection />
       </Suspense> 
 
@@ -40,7 +40,7 @@ export default function Home(){
         <Gallery />
       </Suspense>  
 
-      <Sponsors />
+      <Sponsors /> */}
 
       <Footer />
     
