@@ -39,7 +39,7 @@ const Slide = ({ mainnews }) => {
 
         <Stack direction='column' spacing={3} position='absolute' zIndex={30} bottom={{xs:30}} left={{ xs: 20}}>
 
-          <Stack direction='row' alignItems='center'>
+          <Stack direction={{xs:'column', sm: 'row'}} alignItems={{xs: 'left',sm:'center'}}>
             <Typography color='#13f01e' fontWeight={900} fontSize={16}>
               { mainnews.category}.
             </Typography>

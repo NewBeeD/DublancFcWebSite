@@ -41,15 +41,7 @@ export default function Home(){
         <Gallery />
       </Suspense>  
 
-      {/* <Suspense fallback={<div>Loading...</div>}>
-        <BgImage page='bg1' randomInt={8}/>
-      </Suspense>     */}
-
       <Sponsors />
-
-      {/* <Suspense fallback={<div>Loading...</div>}>
-        <BgImage page='bg1' randomInt={8}/>
-      </Suspense> */}
 
       <Footer />
     
