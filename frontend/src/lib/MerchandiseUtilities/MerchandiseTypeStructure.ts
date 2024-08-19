@@ -5,7 +5,7 @@ interface Merchandise{
   name: string,
   price: number,
   stock: number,
-  image: object[],
+  image: singleImage[],
   category: string,
   description?: string, 
   color?: string,
@@ -50,9 +50,9 @@ export default function fromDataToMerchandiseType(fetchData: any): Merchandise[]
 // item.attributes['jersey'].data[0].attributes['formats']['large']['url']
 
 
-function imageArray(images: any): object[]{
+function imageArray(images: any): singleImage[]{
 
-  const all_images: object[] = images.map(item => {
+  const all_images: singleImage[] = images.map((item: any) => {
 
     let single_image: singleImage = {
 
