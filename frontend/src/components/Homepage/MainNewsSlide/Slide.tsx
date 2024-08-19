@@ -9,19 +9,20 @@ interface MainNewsType {
 
   mainnews: {
 
-    author: string,
-    category: string,
-    created: string,
-    headline: boolean,
-    image: string,
-    video: string | null,
-    content: object[]
+    title: string,
+  content: string, 
+  author: string,
+  category: string,
+  image: string,
+  created: Date,
+  video?: string,
+  headline?: boolean
   }
 }
 
 const Slide = ({ mainnews }: MainNewsType) => {
 
-  console.log(mainnews);
+  console.log('mainnews', mainnews);
   
 
 
