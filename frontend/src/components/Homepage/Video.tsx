@@ -13,9 +13,14 @@ interface VideoType {
   category: string
 }
 
+interface Page{
+
+  page: string
+}
 
 
-const MerchandiseSection = ({ page }) => {
+
+const MerchandiseSection = ({ page }: Page) => {
 
   const [video, setVideo] = useState<VideoType[]>([])
 
