@@ -20,7 +20,7 @@ interface Merchandise{
   name: string,
   price: number,
   stock: number,
-  image: object[],
+  image: singleImage[],
   category: string,
   description?: string, 
   color?: string,
