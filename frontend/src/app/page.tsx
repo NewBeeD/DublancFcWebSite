@@ -7,7 +7,6 @@ import MerchandiseSection from "@/components/Homepage/MerchandiseSection";
 import Gallery from '@/components/Homepage/Gallery'
 import Sponsors from "@/components/Homepage/Sponsors";
 import Video from '@/components/Homepage/Video'
-import BgImage from "@/components/Homepage/BackgroundImages/BgImage";
 import Footer from "@/components/Homepage/Footer";
 
 import { Suspense } from "react";
