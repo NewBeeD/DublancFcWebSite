@@ -5,19 +5,24 @@ import ArrowRightIcon from '@mui/icons-material/ArrowRight';
 
 import useScreenSize from "@/util/windowDimension";
 
-export interface ArticleObject {
+interface MainNewsType {
 
-  title: string,
-  content: string, 
-  author: string,
-  category: string,
-  image: string,
-  created: Date,
-  video?: string,
-  headline?: boolean
+  mainnews: {
+
+    author: string,
+    category: string,
+    created: string,
+    headline: boolean,
+    image: string,
+    video: string | null,
+    content: object[]
+  }
 }
 
-const Slide = ({ mainnews }) => {
+const Slide = ({ mainnews }: MainNewsType) => {
+
+  console.log(mainnews);
+  
 
 
   const { width, height } = useScreenSize() 
