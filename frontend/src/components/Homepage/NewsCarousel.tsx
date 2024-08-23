@@ -37,10 +37,9 @@ const HeadlineCarousel = async () => {
 
   const [articles, setArticle] = useState<ArticleObject[]>([])
   const { width, height } = useScreenSize() 
-  const sliderRef_One = useRef(null)
-  const sliderRef_Two = useRef(null)
-  const sliderRef_Three = useRef(null)
-
+  const sliderRef_One = useRef<Slider | null>(null)
+  const sliderRef_Two = useRef<Slider | null>(null)
+  const sliderRef_Three = useRef<Slider | null>(null)
   
   useEffect(()=>{
       

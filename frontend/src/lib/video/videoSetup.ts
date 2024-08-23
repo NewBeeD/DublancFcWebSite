@@ -10,7 +10,7 @@ interface VideoType {
 export default function VideoTypeDisplay(fetchData: any): VideoType[]{
 
   
-  const video_type = fetchData.map(item => {
+  const video_type = fetchData.map((item:any) => {
 
     let video = {
 
