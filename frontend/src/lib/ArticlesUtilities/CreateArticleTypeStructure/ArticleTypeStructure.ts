@@ -1,8 +1,7 @@
 
-
-
 export interface ArticleObject {
 
+  id: number,
   title: string,
   content: string, 
   author: string,
@@ -38,13 +37,13 @@ interface ItemAttributes {
 
 export default function fromDataToArticleType(fetchData: any): ArticleObject[]{
 
- 
 
 
   const formatted_data = fetchData.map((item: any) => {
 
     let new_item: ArticleObject  = {
 
+      id: item.id,
       title:  item.attributes['title'],
       content:  item.attributes['content'],
       author:  item.attributes['author'],
@@ -57,6 +56,7 @@ export default function fromDataToArticleType(fetchData: any): ArticleObject[]{
 
     return new_item
   })  
+  
 
   return formatted_data  
 }

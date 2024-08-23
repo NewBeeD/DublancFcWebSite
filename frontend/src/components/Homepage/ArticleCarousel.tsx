@@ -13,6 +13,7 @@ import qs from 'qs'
 
 export interface ArticleObject {
 
+  id: number,
   title: string,
   content: string, 
   author: string,
@@ -42,7 +43,7 @@ const HeadlineCarousel = async () => {
 
       fetch(`https://dfcrestapi.onrender.com/api/articles?${query_params_article}`)
       .then((res) => res.json())
-      .then((data) => {              
+      .then((data) => {    
 
         const final_data: ArticleObject[] = fromDataToArticleType(data.data)                
         setArticle(final_data)

@@ -11,6 +11,8 @@ import ArrowCircleLeftIcon from '@mui/icons-material/ArrowCircleLeft';
 import useScreenSize from "@/util/windowDimension";
 import fromDataToArticleType from "@/lib/ArticlesUtilities/CreateArticleTypeStructure/ArticleTypeStructure";
 
+import Link from "next/link";
+
 import { useEffect, useState, useRef } from "react";
 import qs from 'qs'
 
@@ -20,6 +22,7 @@ import styles from '../../styles/NewsCarousel.module.css'
 
 export interface ArticleObject {
 
+  id: number,
   title: string,
   content: string, 
   author: string,
@@ -34,9 +37,10 @@ const HeadlineCarousel = async () => {
 
   const [articles, setArticle] = useState<ArticleObject[]>([])
   const { width, height } = useScreenSize() 
-  const sliderRef_One = useRef()
-  const sliderRef_Two = useRef()
-  const sliderRef_Three = useRef()
+  const sliderRef_One = useRef(null)
+  const sliderRef_Two = useRef(null)
+  const sliderRef_Three = useRef(null)
+
   
   useEffect(()=>{
       
@@ -131,7 +135,11 @@ const HeadlineCarousel = async () => {
 
                   <Box width='100%' height={300} >
 
-                    <CardMedia component='img' image={item.image} style={{ objectFit: 'cover', objectPosition: "50% 50%"}} sx={{ height: {xs: '100%'}, width: '100%'}}/>
+                    <Link href={`/articles/${item.id}`}>
+                      <CardMedia component='img' image={item.image} style={{ objectFit: 'cover', objectPosition: "50% 50%"}} sx={{ height: {xs: '100%'}, width: '100%'}}/>
+                    
+                    </Link>
+
 
                   </Box>
 
@@ -145,9 +153,11 @@ const HeadlineCarousel = async () => {
 
 
                   <Box>
-                    <Typography color='white'>
-                      {item.title}
-                    </Typography>
+                    <Link href={`/articles/${item.id}`}>
+                      <Typography color='white'>
+                        {item.title}
+                      </Typography>
+                    </Link>
                   </Box>
 
                 </Box>
@@ -191,7 +201,10 @@ const HeadlineCarousel = async () => {
 
                   <Box width='100%' height={300} >
 
-                  <CardMedia component='img' image={item.image} style={{ objectFit: 'cover', objectPosition: "50% 50%"}} sx={{ height: {xs: '100%'}, width: '100%'}}/>
+                    <Link href={`/articles/${item.id}`}>
+                      <CardMedia component='img' image={item.image} style={{ objectFit: 'cover', objectPosition: "50% 50%"}} sx={{ height: {xs: '100%'}, width: '100%'}}/>
+                    </Link>
+
 
                   </Box>
 
@@ -205,9 +218,12 @@ const HeadlineCarousel = async () => {
 
 
                   <Box>
-                    <Typography color='white'>
-                      {item.title}
-                    </Typography>
+
+                    <Link href={`/articles/${item.id}`}>
+                      <Typography color='white'>
+                        {item.title}
+                      </Typography>
+                    </Link>
                   </Box>
 
                 </Box>
@@ -252,11 +268,14 @@ const HeadlineCarousel = async () => {
 
                   <Box width='100%' height={300} >
 
-                    <CardMedia 
-                    component='img' 
-                    image={item.image} 
-                    style={{ objectFit: 'cover', objectPosition: "50% 50%"}} 
-                    sx={{ height: {xs: '100%'}, width: '100%'}}/>
+                    <Link href={`/articles/${item.id}`}>
+                      <CardMedia 
+                      component='img' 
+                      image={item.image} 
+                      style={{ objectFit: 'cover', objectPosition: "50% 50%"}} 
+                      sx={{ height: {xs: '100%'}, width: '100%'}}/>
+                    </Link>
+
 
                   </Box>
 
@@ -270,9 +289,11 @@ const HeadlineCarousel = async () => {
 
 
                   <Box>
-                    <Typography color='white'>
-                      {item.title}
-                    </Typography>
+                    <Link href={`/articles/${item.id}`}>
+                      <Typography color='white'>
+                        {item.title}
+                      </Typography>
+                    </Link>
                   </Box>
 
                 </Box>

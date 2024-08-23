@@ -1,5 +1,7 @@
 import {  Box, Typography, Stack, Button, Skeleton, Card } from '@mui/material'
+
 import Image from 'next/image';
+import { useRouter } from 'next/navigation';
 
 import ArrowRightIcon from '@mui/icons-material/ArrowRight';
 
@@ -9,7 +11,8 @@ interface MainNewsType {
 
   mainnews: {
 
-    title: string,
+  id: number,
+  title: string,
   content: string, 
   author: string,
   category: string,
@@ -20,13 +23,11 @@ interface MainNewsType {
   }
 }
 
-const Slide = ({ mainnews }: MainNewsType) => {
-
-  console.log('mainnews', mainnews);
-  
+const Slide = ({ mainnews }: MainNewsType) => { 
 
 
   const { width, height } = useScreenSize() 
+  const router = useRouter()
   
   
   return (
@@ -64,7 +65,13 @@ const Slide = ({ mainnews }: MainNewsType) => {
 
           ): ''}
 
-          <Button variant='contained' sx={{ borderRadius: 50, backgroundColor: '#13f01e', color: 'black'}} endIcon={<ArrowRightIcon />}>Read</Button>
+          <Button 
+          variant='contained' 
+          sx={{ borderRadius: 50, backgroundColor: '#13f01e', color: 'black'}} endIcon={<ArrowRightIcon />}
+          onClick={() => router.push(`/articles/${mainnews.id}`)}
+          >
+            Read
+          </Button>
         </Stack>
 
 

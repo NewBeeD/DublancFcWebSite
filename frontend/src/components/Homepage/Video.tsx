@@ -7,6 +7,7 @@ import { useEffect, useState } from "react";
 
 import VideoTypeDisplay from "@/lib/video/videoSetup";
 
+
 interface VideoType {
 
   link: string,
@@ -21,6 +22,7 @@ const MerchandiseSection = ({ page }) => {
 
   const opts = {
     width: '100%',
+    height: '500',
     borderRadius: '1rem',
     playerVars: {
       // https://developers.google.com/youtube/player_parameters

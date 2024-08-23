@@ -36,9 +36,9 @@ export default function Home(){
         <MerchandiseSection />
       </Suspense> 
 
-      <Suspense fallback={<div>Loading...</div>}>
+      {/* <Suspense fallback={<div>Loading...</div>}>
         <Gallery />
-      </Suspense>  
+      </Suspense>   */}
 
       <Sponsors />
 

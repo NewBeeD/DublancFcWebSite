@@ -5,7 +5,9 @@ import styles from '../../styles/NavBar.module.css'
 import React, { useState, MouseEvent } from 'react';
 
 import TeamLogo from "./TeamLogo";
-import { Teko } from 'next/font/google'
+import { useRouter } from 'next/navigation';
+import Link from 'next/link';
+
 
 import { AppBar, Toolbar, IconButton, Typography, Menu, Container, Button, MenuItem, Stack, Box, Popover, List, ListItem, ListItemText  } from "@mui/material";
 
@@ -23,7 +25,7 @@ import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
 const pages: {label: string, menu: Array<string>}[] = [
   {label: 'News', menu: ['Latest', 'Men', 'Women', 'Academy', 'Features']}, 
   {label:'Teams', menu: ['Men', 'Women', 'Academy']}, 
-  {label: 'Matches', menu: ['Men', 'Women', 'Academy']}, 
+  {label: 'Fixtures', menu: ['Men', 'Women', 'Academy']}, 
   {label: 'Gallery', menu: []}, 
   {label: 'Shop', menu: []}, 
   {label: 'About Us', menu: []}, 
@@ -33,6 +35,8 @@ const pages: {label: string, menu: Array<string>}[] = [
 
 
 const Header = () => {
+
+  const router = useRouter()
 
 
   // Start of variables and functions for naigations for cellphones etc
@@ -74,6 +78,31 @@ const Header = () => {
     setOpenSubMenu(label);
   };
 
+
+  const routes = {
+    Teams: {
+      Men: '/players/men',
+      Women: '/players/women',
+      Academy: '/players/academy',
+    },
+    News: {
+      Latest: '/news/latest',
+      Men: '/news/men',
+      Women: '/news/women',
+      Academy: '/news/academy',
+      Features: '/news/features',
+    },
+    Fixtures: {
+      Men: '/fixtures/men',
+      Women: '/fixtures/women',
+      Academy: '/fixtures/academy',
+    },
+  };
+
+
+  // const linkHref = routes[page.label]?.[menuItem] || '';
+
+
   
   
   return (
@@ -90,9 +119,12 @@ const Header = () => {
             {/* Responsiveness for Larger Devices */}
             <Stack direction='column' justifyContent='center' display={{xs: 'none', sm: 'inherit'}}>
 
-              <Box padding={0} display='flex' justifyContent='center'>
-                <TeamLogo width={180} height={150} />
-              </Box>
+              <Link href='/'>
+                <Box padding={0} display='flex' justifyContent='center'>
+                  <TeamLogo width={180} height={150} />
+                </Box>
+              </Link>
+
 
               <Stack direction='row' spacing={4}>
 
@@ -109,7 +141,9 @@ const Header = () => {
                   >
                     {page.label}
                   </Button>
+
                   {page.menu.length > 0 && (
+                    
                     <Menu
                       id="menu-list-grow"
                       anchorEl={anchorEl}
@@ -123,10 +157,16 @@ const Header = () => {
                       {page.menu.map((menuItem) => (
                         
                         <MenuItem key={menuItem} onClick={handleClose} sx={{ marginTop: 1}}>
-                          <Typography variant='caption' fontSize={18} sx={{ fontWeight: 'semi-bold'}}>          
-                            {menuItem}
+                          <Typography variant='caption' fontSize={18} sx={{ fontWeight: 'semi-bold'}}>  
+
+                            <Link href={routes[page.label]?.[menuItem] || ''}
+                            >
+                              {menuItem}
+
+                            </Link>        
                           </Typography>
                         </MenuItem>
+
                       ))}
                     </Menu>
                   )}
@@ -143,7 +183,13 @@ const Header = () => {
             <Stack width='100%' direction='row' justifyContent='space-between' alignItems='center' display={{xs: 'inherit', md: 'none'}} >
 
               <Box paddingLeft={1}>
-              <TeamLogo width={90} height={40} />
+                
+                <Link href={`/`}>
+                  <TeamLogo width={90} height={40} />
+                </Link>
+
+                  {/* <TeamLogo width={90} height={40} /> */}
+
               </Box>
 
               <Box sx={{ display: { xs: 'flex', md: 'none' }}}>
@@ -208,7 +254,16 @@ const Header = () => {
                           >
                             {page.menu.map((menuItem, idx) => (
                               <MenuItem key={idx} onClick={handleCloseNavMenu}>
-                                <Typography textAlign="center">{menuItem}</Typography>
+                                
+                                <Typography textAlign="center">
+
+                                  {/* {menuItem} */}
+
+                                  <Link href={routes[page.label]?.[menuItem] || ''}                         >
+                                    {menuItem}
+                                  </Link>    
+
+                                </Typography>
                               </MenuItem>
                             ))}
                           </Menu>

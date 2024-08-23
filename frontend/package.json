@@ -14,11 +14,13 @@
     "@mui/icons-material": "^5.16.4",
     "@mui/lab": "^5.0.0-alpha.173",
     "@mui/material": "^5.16.4",
+    "@strapi/blocks-react-renderer": "^1.0.1",
     "@types/react-slick": "^0.23.13",
     "next": "14.2.5",
     "qs": "^6.12.3",
     "react": "^18",
     "react-dom": "^18",
+    "react-share": "^5.1.0",
     "react-slick": "^0.30.2",
     "react-youtube": "^10.1.0",
     "slick-carousel": "^1.8.1"
