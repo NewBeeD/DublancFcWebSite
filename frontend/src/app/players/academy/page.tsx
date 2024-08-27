@@ -30,7 +30,7 @@ const params_articles = {
       populate: true
     }, 
     pagination: {
-      pageSize: 30
+      pageSize: 100
     }
   }
 }
@@ -41,7 +41,8 @@ const page = async () => {
 
   const response = await fetch(`https://dfcrestapi.onrender.com/api/players?${query_params_player}`)
   let players = await response.json()
-  let squad =  PlayerStructure(players.data)  
+  let squad =  PlayerStructure(players.data) 
+  squad = squad.filter(playerPoint => playerPoint.league === 'ACADEMY') 
   
 
   return (

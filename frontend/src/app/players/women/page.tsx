@@ -1,6 +1,8 @@
 import qs from 'qs'
 import { Box, Paper, Card, CardContent, CardMedia ,Stack, Typography } from '@mui/material'
 
+import Link from 'next/link'
+
 import Footer from '@/components/Homepage/Footer'
 import PlayerStructure from '@/lib/Player/PlayerStructure'
 
@@ -29,7 +31,7 @@ const params_articles = {
       populate: true
     }, 
     pagination: {
-      pageSize: 30
+      pageSize: 100
     }
   }
 }
@@ -42,47 +44,62 @@ const page = async () => {
   let players = await response.json()
   let squad =  PlayerStructure(players.data)  
   
+  squad = squad.filter(playerPoint => playerPoint.league === 'WOMEN')
+
+  
 
   return (
     <Box margin='auto' maxWidth={1280}>
 
       {players && (
 
-        <Box display='flex' justifyContent='center' width='100%'  flexWrap='wrap' paddingTop={4}>
+        <Box display='flex' justifyContent='center' width='100%'  flexWrap='wrap' >
           
-          {squad.filter(playerPoint => playerPoint.league === 'FEMALE').map((item, idx) => (
+          <Box width='100%' height='100%' >
+
+          <img src='/team/FemaleSquad.jpg' width='100%' />
+
+          </Box>
+
+
+          {squad.map((item, idx) => (
 
             <Box key={idx} width={350} height={400} margin={{xs: 0.5, sm: 2}} position='relative'>
 
-              <Box>
+              <Link href={`/players/women/${item.firstname}-${item.lastname}`} style={{ textDecoration: 'none'}}>
+              
+                <Box>
 
-                <Card>
+                  <Card>
 
-                  <CardMedia component='img' image={item.image} style={{ objectFit: 'cover', objectPosition: "50% 50%"}} sx={{ height: {xs: 300}, width: '100%'}}/>
+                    <CardMedia component='img' image={item.image} style={{ objectFit: 'cover', objectPosition: "50% 50%"}} sx={{ height: {xs: 300}, width: '100%'}}/>
 
-                </Card>
+                  </Card>
 
-              </Box>
+                </Box>
 
-              <Box>
+                <Box>
 
-                <Stack direction='column' paddingLeft={1} paddingTop={1}>
+                  <Stack direction='column' paddingLeft={1} paddingTop={1}>
 
-                  <Box>
-                    <Typography variant='body1' fontWeight={900}>{item.firstname} {item.lastname}</Typography>
-                  </Box>
+                    <Box>
+                      <Typography variant='body1' fontWeight={900}>{item.firstname} {item.lastname}</Typography>
+                    </Box>
 
-                  <Box>
-                    <Typography variant='body2' >{item.position}</Typography>
-                  </Box>
+                    <Box>
+                      <Typography variant='body2' >{item.position}</Typography>
+                    </Box>
 
-                </Stack>
+                  </Stack>
 
-              </Box>
+                </Box>
 
-              <Box position='absolute' top={6} left={15}>
-                <Typography variant='h4' fontWeight={900} color='#1142b1'>{item.kit}</Typography>
-              </Box>
+                <Box position='absolute' top={6} left={15}>
+                  <Typography variant='h4' fontWeight={900} color='#1142b1'>{item.kit}</Typography>
+                </Box>
+              </Link>
+
+
 
 
 

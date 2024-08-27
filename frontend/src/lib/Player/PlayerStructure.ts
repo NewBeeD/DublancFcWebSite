@@ -17,7 +17,7 @@ interface PlayerType{
 }
 
 
-export default function PlayerStructure(fetchData: any): PlayerType[] { 
+export default function PlayerStructure(fetchData: any): PlayerType[] {  
 
 
   const players_data: PlayerType[] = fetchData.map((item: any) =>{    

@@ -59,81 +59,85 @@ const page = ({ params }) => {
 
   
   return (
-    <Box  width={{xs: '100%'}}>
 
-      <Box paddingX={{xs: 2}} >
+    <Box display='flex' justifyContent='center'>
 
-        <BlocksRenderer content={article}  blocks={{
-          image: ({image}) => {
+      <Box  width={{xs: '100%'}} maxWidth='1280px'>
 
-            return(
+        <Box paddingX={{xs: 2}} >
 
-              <Box maxWidth={{xs: 400}} paddingBottom={3}>
-                <Image 
-                src={image.url} 
-                alt='Article Image' 
-                height={image.height} 
-                width={image.width} 
-                layout='responsive'
-                style={{ objectFit: 'cover', objectPosition: "50% 50%"}}/>
+          <BlocksRenderer content={article}  blocks={{
+            image: ({image}) => {
 
-              </Box>
-            )
-            
-          },
-          heading: ({children, level}) =>{
+              return(
 
-            switch(level){
+                <Box maxWidth={{xs: 400}} paddingBottom={3}>
+                  <Image 
+                  src={image.url} 
+                  alt='Article Image' 
+                  height={image.height} 
+                  width={image.width} 
+                  layout='responsive'
+                  style={{ objectFit: 'cover', objectPosition: "50% 50%"}}/>
 
-              case 1:
-                return <Typography variant='h2' textAlign='center' paddingTop={2} paddingBottom={2}>{children}</Typography>
+                </Box>
+              )
+              
+            },
+            heading: ({children, level}) =>{
+
+              switch(level){
+
+                case 1:
+                  return <Typography variant='h2' textAlign='center' paddingTop={2} paddingBottom={2}>{children}</Typography>
+              }
+            }, 
+            paragraph: ({ children }) => {
+              return(
+                <Typography align='left'>
+                  {children}
+                </Typography>
+              )
             }
-          }, 
-          paragraph: ({ children }) => {
-            return(
-              <Typography align='left'>
-                {children}
-              </Typography>
-            )
-          }
-        }}/>
+          }}/>
 
-        <SocialShare url={fullUrl} title={ShareTitle} />
+          <SocialShare url={fullUrl} title={ShareTitle} />
 
-        <Divider />
+          <Divider />
 
-        <Box paddingY={2}>
+          <Box paddingY={2}>
 
-          <Stack direction='column'>
+            <Stack direction='column'>
 
-            <Box>
-              <Typography color='blue' fontWeight={900} variant='caption'>
-                {category && category}
-              </Typography>
-            </Box>
+              <Box>
+                <Typography color='blue' fontWeight={900} variant='caption'>
+                  {category && category}
+                </Typography>
+              </Box>
 
-            <Box>
-              <Typography color='blue' fontWeight={900} variant='caption'>
-                {author && author}
-              </Typography>
-            </Box>
+              <Box>
+                <Typography color='blue' fontWeight={900} variant='caption'>
+                  {author && author}
+                </Typography>
+              </Box>
 
-            <Box>
-              <Typography fontWeight={900} variant='caption'>
-                {elapsedTime && elapsedTime}
-              </Typography>
-            </Box>
+              <Box>
+                <Typography fontWeight={900} variant='caption'>
+                  {elapsedTime && elapsedTime}
+                </Typography>
+              </Box>
 
-            
+              
 
-          </Stack>
+            </Stack>
+
+          </Box>
 
         </Box>
 
+        <Footer />     
+
       </Box>
-
-      <Footer />     
-
     </Box>
   );
 }

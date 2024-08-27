@@ -40,7 +40,7 @@ export default function Home(){
         <Gallery />
       </Suspense>   */}
 
-      <Sponsors /> */}
+      <Sponsors /> 
 
       <Footer />
     
