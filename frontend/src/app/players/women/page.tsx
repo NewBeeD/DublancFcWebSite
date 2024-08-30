@@ -5,6 +5,7 @@ import Link from 'next/link'
 
 import Footer from '@/components/Homepage/Footer'
 import PlayerStructure from '@/lib/Player/PlayerStructure'
+import TeamsNavigation from '@/components/TeamsPage/TeamsNavigation'
 
 interface PlayerType{
 
@@ -55,9 +56,17 @@ const page = async () => {
 
         <Box display='flex' justifyContent='center' width='100%'  flexWrap='wrap' >
           
-          <Box width='100%' height='100%' >
+          <Box width='100%' height='100%' position='relative'>
 
-          <img src='/team/FemaleSquad.jpg' width='100%' />
+            <Box>
+              <img src='/team/FemaleSquad.jpg' width='100%' />
+            </Box>
+
+
+            <Box position='absolute' bottom={6} left={12} sx={{ backgroundColor: 'rgba(0, 0, 0, 0.56)'}}>
+                <TeamsNavigation />
+            </Box>
+
 
           </Box>
 

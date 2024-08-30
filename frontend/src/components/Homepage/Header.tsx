@@ -24,13 +24,13 @@ import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
 
 const pages: {label: string, menu: Array<string>}[] = [
   {label: 'News', menu: ['Latest', 'Men', 'Women', 'Academy', 'Features']}, 
-  {label:'Teams', menu: ['Men', 'Women', 'Academy']}, 
-  {label: 'Fixtures', menu: ['Men', 'Women', 'Academy']}, 
+  {label:'Teams', menu: ['Men', 'DivisionOne', 'Under21' ,'Women', 'Academy']}, 
+  {label: 'Fixtures', menu: ['Men',  'DivisionOne', 'Under21', 'Women', 'Academy']}, 
   {label: 'Gallery', menu: []}, 
   {label: 'Shop', menu: []}, 
   {label: 'About Us', menu: []}, 
   {label: 'Contact Us', menu: []}, 
-  {label:'Sponsors', menu:[]} 
+  {label:'Partners', menu:[]} 
 ]
 
 
@@ -43,6 +43,37 @@ const Header = () => {
   const [anchorElNav, setAnchorElNav] = useState<null | HTMLElement>(null);
   const [anchorElSubNav, setAnchorElSubNav] = useState<null | HTMLElement>(null);
   const [openSubMenu, setOpenSubMenu] = useState<string | null>(null);
+
+
+
+
+  const pageNavigate = (page_item: string) =>{
+
+    switch(page_item){
+
+      case 'Gallery':
+        router.push('/gallery')
+        break;
+      
+      case 'Shop':
+        router.push('/shop')
+        break;
+      
+      case 'About Us':
+        router.push('/aboutus')
+        break;
+      
+      case 'Contact Us':
+        router.push('/contactus')
+        break;
+
+      case 'Sponsors':
+        router.push('/sponsors')
+        break;
+    }
+
+
+  }
  
   const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorElNav(event.currentTarget);
@@ -82,6 +113,8 @@ const Header = () => {
   const routes = {
     Teams: {
       Men: '/players/men',
+      DivisionOne: '/players/divisionone',
+      Under21: '/players/under21',
       Women: '/players/women',
       Academy: '/players/academy',
     },
@@ -94,6 +127,8 @@ const Header = () => {
     },
     Fixtures: {
       Men: '/fixtures/men',
+      DivisionOne: '/fixtures/divisionone',
+      Under21: '/fixtures/under21',
       Women: '/fixtures/women',
       Academy: '/fixtures/academy',
     },
@@ -139,7 +174,18 @@ const Header = () => {
                     color="inherit"
                     className={styles.container}
                   >
-                    {page.label}
+                      {page.label === 'Gallery' || page.label === 'Shop' ||page.label === 'About Us' || page.label === 'Contact Us' || page.label === 'Sponsors' ? (
+                      
+                      <Link href={`/${page.label}`} style={{ textDecoration: 'none', color: 'white'}}>
+                        
+                        <Typography>
+                          {page.label}
+                        </Typography>
+                  
+                  
+                      </Link>
+                  
+                    ): (<Typography>{page.label}</Typography>)}
                   </Button>
 
                   {page.menu.length > 0 && (
@@ -160,7 +206,7 @@ const Header = () => {
                           <Typography variant='caption' fontSize={18} sx={{ fontWeight: 'semi-bold'}}>  
 
                             <Link href={routes[page.label]?.[menuItem] || ''}
-                            >
+                            style={{ textDecoration: 'none'}}>
                               {menuItem}
 
                             </Link>        

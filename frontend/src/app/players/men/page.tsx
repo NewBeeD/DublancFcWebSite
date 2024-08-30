@@ -2,9 +2,11 @@ import qs from 'qs'
 import { Box, Paper, Card, CardContent, CardMedia ,Stack, Typography } from '@mui/material'
 
 import Footer from '@/components/Homepage/Footer'
+import TeamsNavigation from '@/components/TeamsPage/TeamsNavigation'
 
 import PlayerStructure from '@/lib/Player/PlayerStructure'
 import Link from 'next/link'
+import { Suspense } from 'react'
 
 interface PlayerType{
 
@@ -53,11 +55,15 @@ const page = async () => {
 
         <Box display='flex' justifyContent='center' width='100%'  flexWrap='wrap' >
 
-          <Box width='100%' height='100%' >
+          <Box width='100%' height='100%' position='relative'>
 
-          {squad[0].league === 'PREMIER_LEAGUE_MEN'? (<img src='/team/FULLSQUAD.png' width='100%' />):squad[0].league === 'WOMEN'? (<img src='/team/FemaleSquad.jpg' width='100%' />) :''}
+            <Box>
+              <img src='/team/FULLSQUAD.png' width='100%' />
+            </Box>
 
-            
+            <Box position='absolute' bottom={6} left={12} sx={{ backgroundColor: 'rgba(0, 0, 0, 0.56)'}}>
+                <TeamsNavigation />
+            </Box>
 
           </Box>
           

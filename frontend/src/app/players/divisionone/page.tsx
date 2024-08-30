@@ -43,37 +43,30 @@ const page = async () => {
   const response = await fetch(`https://dfcrestapi.onrender.com/api/players?${query_params_player}`)
   let players = await response.json()
   let squad =  PlayerStructure(players.data) 
-  squad = squad.filter(playerPoint => playerPoint.league === 'ACADEMY') 
+  squad = squad.filter(playerPoint => playerPoint.league === 'Division One') 
   
 
   return (
     <Box margin='auto' maxWidth={1280}>
 
-
-      <Box width='100%' height='100%' position='relative'>
-
-        <Box>
-          <img src='/team/Academy.jpg' width='100%' />
-        </Box>
-
-
-        <Box position='absolute' bottom={6} left={12} sx={{ backgroundColor: 'rgba(0, 0, 0, 0.56)'}}>
-            <TeamsNavigation />
-        </Box>
-
-
-      </Box>
-
-      
-      
-      
-      
-      
       {players && (
 
-        <Box display='flex' justifyContent='center' width='100%'  flexWrap='wrap' paddingTop={4}>
+        <Box display='flex' justifyContent='center' width='100%'  flexWrap='wrap' >
+
+
+        <Box width='100%' height='100%' position='relative'>
+
+          <Box>
+            <img src='/team/DivisionOne.jpg' width='100%' />
+          </Box>
+
+          <Box position='absolute' bottom={6} left={12} sx={{ backgroundColor: 'rgba(0, 0, 0, 0.56)'}}>
+              <TeamsNavigation />
+          </Box>
+
+        </Box>
           
-          {squad.filter(playerPoint => playerPoint.league === 'ACADEMY').map((item, idx) => (
+          {squad.map((item, idx) => (
 
             <Box key={idx} width={350} height={400} margin={{xs: 0.5, sm: 2}} position='relative'>
 
