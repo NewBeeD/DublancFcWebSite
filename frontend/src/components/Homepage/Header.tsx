@@ -279,10 +279,22 @@ const Header = () => {
 
                     {pages.map((page, idx) => (
                       <div key={idx}>
+                        
                         <MenuItem onClick={(event) => handleOpenSubMenu(event, page.label)}>
-                          <Typography textAlign="center">{page.label}</Typography>
+
+
+                          
+                          {page.label === 'Gallery' || page.label === 'Shop' ||page.label === 'About Us' || page.label === 'Contact Us' || page.label === 'Sponsors' ? (
+                      
+                            <Link href={`/${page.label}`} style={{ textDecoration: 'none', color: 'black'}}>
+                                <Typography textAlign="center">{page.label}</Typography>
+                            </Link>
+                        
+                            ): (<Typography textAlign="center">{page.label}</Typography>)} 
+                          
                           {page.menu.length > 0 && <KeyboardArrowRightIcon />}
                         </MenuItem>
+
                         {page.menu.length > 0 && (
                           <Menu
                             id="sub-menu"

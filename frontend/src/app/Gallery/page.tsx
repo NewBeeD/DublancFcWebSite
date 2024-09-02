@@ -1,10 +1,12 @@
-import { Box, Stack, Paper, Card, CardMedia, CardContent, Typography } from "@mui/material";
+import { Box, Stack, Paper, Card, CardMedia, CardContent, Typography, Divider } from "@mui/material";
 
 import GalleryStructure from "@/lib/Gallery/GalleryStructure";
 import { GalleryType } from "@/lib/Gallery/GalleryStructure";
 
 import qs from 'qs'
 import Link from "next/link";
+import Footer from "@/components/Homepage/Footer";
+import Sponsors from "@/components/Homepage/Sponsors";
 
 
 const params_gallery = {
@@ -33,7 +35,7 @@ const page = async () => {
 
 
   return (
-    <Box>
+    <Box maxWidth='1280px'>
 
       <Box paddingTop={4} paddingBottom={8}>
 
@@ -41,15 +43,19 @@ const page = async () => {
           GALLERY
         </Typography>
 
+        <Divider />
+
       </Box>
 
-      <Box display='flex' flexWrap='wrap' justifyContent='center'>
+      
+
+      <Box display='flex' flexWrap='wrap' justifyContent='center' paddingBottom={6}>
 
         {images && images.map((item, idx) => {
 
           return (
 
-            <Box width={300} margin={1}>
+            <Box width={{xs: '95%', sm:300}} margin={1}>
 
               <Link href={`/Gallery/${item.title}`} style={{ textDecoration: 'none'}}>
               
@@ -74,7 +80,8 @@ const page = async () => {
 
       </Box>
 
-      
+      <Sponsors />
+      <Footer />
     </Box>
   );
 }
